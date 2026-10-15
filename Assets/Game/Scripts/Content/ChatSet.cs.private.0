@@ -1,0 +1,101 @@
+﻿using LostKingdom.ID;
+using LostKingdom.DataStructure;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using System.Linq;
+using LostKingdom.Utility;
+
+namespace LostKingdom.Content
+{
+    public class ChatSet
+    {
+        private LinkedList<string> texts;
+        private LinkedListNode<string> head;
+        private LinkedListNode<string> curr;
+        private LinkedListNode<string> tail;
+        private readonly string[] options;
+        public int Type { get; private set; } = -1;
+        public string[] Options => this.options;
+
+        /// <summary> 设置对应选项文本描述 </summary>
+        /// <param Name="flag"> 编号 </param>
+        /// <returns> 选项文本描述 </returns>
+        public string this[int index]
+        {
+            get => this.options[index.Clamp(0, 3)];
+            set => this.options[index.Clamp(0, 3)] = value;
+        }
+
+        public ChatSet(int type)
+        {
+            this.options = new string[4] { null, null, null, null };
+            this.texts = new LinkedList<string>(this.SetDefaults(type));
+            this.head = texts.First;
+            this.curr = texts.First;
+            this.tail = texts.Last;
+        }
+
+        public ChatSet(string text)
+        {
+            this.options = new string[4] { null, null, null, null };
+            this.texts = new LinkedList<string>(new string[1] { text });
+            this.head = texts.First;
+            this.curr = texts.First;
+            this.tail = texts.Last;
+        }
+
+        public string[] SetDefaults(int type)
+        {
+            switch(this.Type = type)
+            {
+                case 0:
+                    this[0] = "£19.15";
+                    this[1] = "£9.15";
+                    this[2] = "£9.18";
+                    return new string[2] {
+                        "Excuse me.\nCan you tell me how much the shirt is?",
+                        "Yes, it's...",
+                    };
+                case 1:
+                    return new string[1] {
+                        "Are you sure? Anyway, it's too expensive!",
+                    };
+                case 2:
+                    return new string[1] {
+                        "That's right!",
+                    };
+                case 3:
+                    return new string[1] {
+                        "It seems a bit more expensive than the original price...",
+                    };
+                case 4:
+                    this[0] = "Leave now";
+                    this[1] = "Just later";
+                    return new string[1] {
+                        "Leave the house?",
+                    };
+            }
+            return null;
+        }
+
+        /// <summary> 获取下一段对话 </summary>
+        /// <returns> 若对话已结束，则返回null，否则返回下一段对话 </returns>
+        public string GetChat()
+        {
+            if (this.curr == null) return null;
+            string chat = this.curr.Value;
+            this.curr = this.curr.Next;
+            return chat;
+        }
+
+        public ChatSet SelectOption(int index)
+        {
+            switch(this.Type)
+            {
+                case 0:
+                    return new ChatSet(1 + index);
+            }
+            return null;
+        }
+    }
+}

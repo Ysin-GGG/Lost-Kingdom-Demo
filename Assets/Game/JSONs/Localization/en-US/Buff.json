@@ -1,0 +1,14 @@
+﻿{
+  "Name": {
+    "Wet": "Wet",
+    "MagicShield": "Magic Shield",
+    "Burn": "Burn",
+    "Frozen": "Frozen"
+  },
+  "Description": {
+    "Wet": "Your body is dripping with water.",
+    "MagicShield": "Decrease the damage you taken.",
+    "Burn": "Continuous fire damage taken.",
+    "Frozen": "You can do nothing."
+  }
+}

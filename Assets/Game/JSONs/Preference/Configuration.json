@@ -1,0 +1,18 @@
+﻿{
+  "FPS": 240,
+  "Language": {
+    "ID": 2,
+    "Name": "简体中文",
+    "Lang": "zh-Hans"
+  },
+  "ScreenResolution": {
+    "Width": 1920,
+    "Height": 1080
+  },
+  "Volume": {
+    "Master": 0.5,
+    "Music": 1.0,
+    "Ambient": 1.0,
+    "SFX": 1.0
+  }
+}

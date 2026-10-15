@@ -1,0 +1,14 @@
+﻿{
+  "Name": {
+    "Wet": "潮湿",
+    "MagicShield": "魔能护盾",
+    "Burn": "灼烧",
+    "Frozen": "冻结"
+  },
+  "Description": {
+    "Wet": "你的身上正在滴水。",
+    "MagicShield": "减少你所受到的伤害。",
+    "Burn": "持续性的火元素伤害。",
+    "Frozen": "无法动弹。"
+  }
+}

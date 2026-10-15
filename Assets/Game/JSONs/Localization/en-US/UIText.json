@@ -1,0 +1,39 @@
+﻿{
+  "Name": {
+    "GeneralSettings": "General",
+    "GraphicSettings": "Graphic",
+    "AudioSettings": "Audio",
+    "GameplaySettings": "Gameplay",
+    "UISettings": "UI",
+    "ControlSettings": "Control",
+    "KeyControlName": "UI",
+    "Keyboard1": "Keyboard 1",
+    "Keyboard2": "Keyboard 2",
+    "Gamepad1": "Gamepad 1",
+    "Gamepad2": "Gamepad 2",
+    "ContinueGame": "Continue",
+    "NewGame": "New Game",
+    "Options": "Options",
+    "ExitGame": "Exit Game",
+    "MasterVolume": "Master Volume",
+    "MusicVolume": "Music Volume",
+    "AmbientVolume": "Ambient Volume",
+    "SFXVolume": "SFX Volume",
+    "Resolution": "Screen Resolution",
+    "FPS": "Frame Per Second",
+    "Language": "Language",
+    "SymbolCDPool": "Symbol Cooldown List",
+    "EndAction": "End Action"
+  },
+  "Description": {
+    "KeySettingTip": "You are setting a new key for '{0}' by '{1}'.",
+    "ContinueGame": "Continue the adventure you play last time.",
+    "NewGame": "Start a new adventure.",
+    "Options": "Customize your settings.",
+    "ExitGame": "Exit the game and return to the desktop."
+  },
+  "Language": {
+    "English": "English",
+    "Chinese": "简体中文（Simplified Chinese）"
+  }
+}

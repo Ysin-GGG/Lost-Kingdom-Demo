@@ -1,0 +1,18 @@
+﻿{
+  "FPS": 240,
+  "Language": {
+    "ID": 1,
+    "Name": "English",
+    "Lang": "en-US"
+  },
+  "ScreenResolution": {
+    "Width": 1920,
+    "Height": 1080
+  },
+  "Volume": {
+    "Master": 0.5,
+    "Music": 1.0,
+    "Ambient": 1.0,
+    "SFX": 1.0
+  }
+}

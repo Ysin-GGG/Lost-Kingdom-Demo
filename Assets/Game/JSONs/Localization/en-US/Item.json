@@ -1,0 +1,14 @@
+﻿{
+  "Name": {
+    "None": "",
+    "ArtonsSapphire": "Arton's sapphire",
+    "ArchaicCloak": "Archaic Cloak",
+    "WoodenStaff": "Wooden Staff"
+  },
+  "Description": {
+    "None": "",
+    "ArtonsSapphire": "Emitting a dim glow.",
+    "ArchaicCloak": "It remains some mana.",
+    "WoodenStaff": "A Common staff of wood."
+  }
+}

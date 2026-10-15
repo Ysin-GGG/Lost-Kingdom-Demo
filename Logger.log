@@ -1,0 +1,11 @@
+﻿[2025-05-17 16:33:31.0045] [System]: 正在加载游戏内容
+[2025-05-17 16:33:31.0131] [System]: 正在读取游戏配置
+[2025-05-17 16:33:31.0206] [System]: 正在读取键位映射
+[2025-05-17 16:33:31.7997] [System]: 场景文件生成完毕：D:\Data\MainProject\Lost-Kingdom-Demo\Assets\Game\Fields\HuntersHouseField.bin
+[2025-05-17 16:33:31.8062] [System]: 场景文件生成完毕：D:\Data\MainProject\Lost-Kingdom-Demo\Assets\Game\Fields\HuntersHouse.bin
+[2025-05-17 16:33:54.9851] [System]: A lifetime of object has been ended (From: SFXPlayer (UnityEngine.AudioSource))
+[2025-05-17 16:33:55.9314] [System]: A lifetime of object has been ended (From: SFXPlayer (UnityEngine.AudioSource))
+[2025-05-17 16:33:58.4338] [System]: A lifetime of object has been ended (From: SFXPlayer (UnityEngine.AudioSource))
+[2025-05-17 16:34:52.8374] [System]: A lifetime of object has been ended (From: SFXPlayer (UnityEngine.AudioSource))
+[2025-05-17 16:34:53.0541] [System]: A lifetime of object has been ended (From: SFXPlayer (UnityEngine.AudioSource))
+[2025-05-17 16:35:21.1646] [System]: A lifetime of object has been ended (From: SFXPlayer (UnityEngine.AudioSource))

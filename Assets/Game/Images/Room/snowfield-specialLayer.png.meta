@@ -1,0 +1,447 @@
+fileFormatVersion: 2
+guid: cfa6a8f2cdab1c64e9fcc8141149db47
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: snowfield-specialLayer_92
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 324
+        width: 814
+        height: 402
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fe84fbe2cec64644b4021806aebd799
+      internalID: 1048929725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snowfield-specialLayer_2
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 860
+        width: 73
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6eeb1ac8805230448aab9ea2fc472dbe
+      internalID: 131763649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snowfield-specialLayer_0
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 736
+        width: 368
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4a63ca35ee0a484f8befba556331820
+      internalID: 1688233985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snowfield-specialLayer_1
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 856
+        width: 69
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02e52363c07594b468fb46486126d86b
+      internalID: 881789156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snowfield-specialLayer_3
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 747
+        width: 174
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ed5ad665133b384e9a06373a7abe8da
+      internalID: -1699782794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snowfield-specialLayer_4
+      rect:
+        serializedVersion: 2
+        x: 1484
+        y: 747
+        width: 198
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e447f33f9c40e8e40bf0cd2e5283437d
+      internalID: -612877442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snowfield-specialLayer_30
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 670
+        width: 246
+        height: 186
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeb4d8fc54a0ec645bd2c524e54a9210
+      internalID: 1480817917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snowfield-specialLayer_93
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 624
+        width: 180
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0324042d80bfb764ba41918feaee38e8
+      internalID: -957860807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snowfield-specialLayer_94
+      rect:
+        serializedVersion: 2
+        x: 1488
+        y: 340
+        width: 104
+        height: 392
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f2baf695d6f6754587d459815aa8a23
+      internalID: -1889674323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snowfield-specialLayer_95
+      rect:
+        serializedVersion: 2
+        x: 1214
+        y: 462
+        width: 212
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e81d007c004d934c99ba44f8cfad7a4
+      internalID: -1095774414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      snowfield-specialLayer_0: 1688233985
+      snowfield-specialLayer_1: 881789156
+      snowfield-specialLayer_10: 939383444
+      snowfield-specialLayer_11: 47844605
+      snowfield-specialLayer_12: -578909986
+      snowfield-specialLayer_13: 593720887
+      snowfield-specialLayer_14: -427090605
+      snowfield-specialLayer_15: 1536173806
+      snowfield-specialLayer_16: -172817698
+      snowfield-specialLayer_17: -1688683756
+      snowfield-specialLayer_18: 2044567868
+      snowfield-specialLayer_19: -230944901
+      snowfield-specialLayer_2: 131763649
+      snowfield-specialLayer_20: -597144640
+      snowfield-specialLayer_21: -477465451
+      snowfield-specialLayer_22: 2064432851
+      snowfield-specialLayer_23: -833394392
+      snowfield-specialLayer_24: 1738403523
+      snowfield-specialLayer_25: -367772823
+      snowfield-specialLayer_26: 174632526
+      snowfield-specialLayer_27: 792857972
+      snowfield-specialLayer_28: 1702042020
+      snowfield-specialLayer_29: 1934743721
+      snowfield-specialLayer_3: -1699782794
+      snowfield-specialLayer_30: 1480817917
+      snowfield-specialLayer_31: 792412605
+      snowfield-specialLayer_32: 983120777
+      snowfield-specialLayer_33: 751976056
+      snowfield-specialLayer_34: 734460387
+      snowfield-specialLayer_35: -1086105997
+      snowfield-specialLayer_36: 1146523733
+      snowfield-specialLayer_37: 1029182893
+      snowfield-specialLayer_38: -252465972
+      snowfield-specialLayer_39: -989582201
+      snowfield-specialLayer_4: -612877442
+      snowfield-specialLayer_40: 2027315575
+      snowfield-specialLayer_41: 1043407215
+      snowfield-specialLayer_42: -384995419
+      snowfield-specialLayer_43: -1662541485
+      snowfield-specialLayer_44: 1341284902
+      snowfield-specialLayer_45: 1502582360
+      snowfield-specialLayer_46: 1359035969
+      snowfield-specialLayer_47: 515920853
+      snowfield-specialLayer_48: 1236924768
+      snowfield-specialLayer_49: 1383560150
+      snowfield-specialLayer_5: -473173422
+      snowfield-specialLayer_50: 618860819
+      snowfield-specialLayer_51: -1460421639
+      snowfield-specialLayer_52: -1845513150
+      snowfield-specialLayer_53: -906633894
+      snowfield-specialLayer_54: 850382532
+      snowfield-specialLayer_55: 9113598
+      snowfield-specialLayer_56: -1323154073
+      snowfield-specialLayer_57: 2019108893
+      snowfield-specialLayer_58: -1083810081
+      snowfield-specialLayer_59: 113363155
+      snowfield-specialLayer_6: 969991534
+      snowfield-specialLayer_60: -1657998411
+      snowfield-specialLayer_61: -2103884572
+      snowfield-specialLayer_62: -1547158860
+      snowfield-specialLayer_63: -1493534236
+      snowfield-specialLayer_64: -1857178612
+      snowfield-specialLayer_65: 1659214218
+      snowfield-specialLayer_66: 1391491885
+      snowfield-specialLayer_67: 497752159
+      snowfield-specialLayer_68: -406877679
+      snowfield-specialLayer_69: -393306843
+      snowfield-specialLayer_7: 1580243755
+      snowfield-specialLayer_70: -2146581377
+      snowfield-specialLayer_71: -1493384929
+      snowfield-specialLayer_72: 2093554120
+      snowfield-specialLayer_73: -1992818892
+      snowfield-specialLayer_74: -798381861
+      snowfield-specialLayer_75: -525834548
+      snowfield-specialLayer_76: -1843978230
+      snowfield-specialLayer_77: 1390581703
+      snowfield-specialLayer_78: 382777739
+      snowfield-specialLayer_79: -315515903
+      snowfield-specialLayer_8: 179012549
+      snowfield-specialLayer_80: 1214099044
+      snowfield-specialLayer_81: 466415274
+      snowfield-specialLayer_82: 2142530042
+      snowfield-specialLayer_83: 2074181995
+      snowfield-specialLayer_84: -1085369321
+      snowfield-specialLayer_85: 67569226
+      snowfield-specialLayer_86: 73022326
+      snowfield-specialLayer_87: 1206041319
+      snowfield-specialLayer_88: 1079736498
+      snowfield-specialLayer_89: 2099871964
+      snowfield-specialLayer_9: 1775619429
+      snowfield-specialLayer_90: 2145465094
+      snowfield-specialLayer_91: 1549234106
+      snowfield-specialLayer_92: 1048929725
+      snowfield-specialLayer_93: -957860807
+      snowfield-specialLayer_94: -1889674323
+      snowfield-specialLayer_95: -1095774414
+      snowfield-specialLayer_96: 1710171294
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

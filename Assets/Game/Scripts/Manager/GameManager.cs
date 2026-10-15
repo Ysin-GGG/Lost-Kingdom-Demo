@@ -1,0 +1,319 @@
+﻿using LostKingdom.Content;
+using LostKingdom.DataStructure;
+using LostKingdom.Prefab;
+using LostKingdom.Utility;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Unity.VisualScripting;
+using UnityEditor;
+using UnityEditor.Experimental.Licensing;
+using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
+
+namespace LostKingdom.Manager
+{
+    [DisallowMultipleComponent]
+    public sealed class GameManager : LKBehaviour
+    {
+        /// <summary> 默认先攻参数 </summary>
+        public const int Dice = 20;
+
+        private static GameManager instance;
+
+        [SerializeField]
+        private GameObject _obj_enemies;
+        [SerializeField]
+        private GameObject _obj_characters;
+        [SerializeField]
+        private GameObject _obj_combatTexts;
+        [SerializeField]
+        private EntityObject _prefab_entityObject;
+        [SerializeField]
+        private CombatText _prefab_combatText;
+
+        private List<Entity> entities;
+        private List<Enemy> enemies;
+        private List<Character> characters;
+        private LinkedList<Entity> currTrack;
+        private LinkedList<Entity> nextTrack;
+        private static ObjectPool<EntityObject> enemyObjects;
+        private static ObjectPool<EntityObject> characterObjects;
+        private static ObjectPool<CombatText> combatTexts;
+        private static int actionTimer;
+        private readonly static LKRandom[] randGens = { new LKRandom(null, false), new LKRandom(2u, false), new LKRandom(null, false) };
+
+        public static Entity[] Entities => GameManager.instance.entities.ToArray();
+        public static Enemy[] Enemies => GameManager.instance.enemies.ToArray();
+        public static Character[] Characters => GameManager.instance.characters.ToArray();
+        /// <summary> 当前正在行动的实体 </summary>
+        public static Entity InitiativeEntity => GameManager.instance.currTrack.Count > 0 ? GameManager.instance.currTrack.First.Value : null;
+        /// <summary> 当前所操控的角色 </summary>
+        public static Character LocalCharacter => GameManager.instance.characters[0];
+        /// <summary> 当前选中的技能 </summary>
+        public static Symbol SelectedSymbol { get; internal set; }
+        /// <summary> 移动模式 </summary>
+        public static bool MovingMode { get; set; }
+        /// <summary> 战斗回合轮数 </summary>
+        public static int BattleRound { get; set; }
+        /// <summary> 是否处于游戏中 </summary>
+        public static int InGame { get; set; }
+        /// <summary> 随机数生成器：行动优先点数 </summary>
+        public static LKRandom RandGen_InitiativeDice { get; internal set; } = GameManager.randGens[0];
+        /// <summary> 随机数生成器：地图生成 </summary>
+        public static LKRandom RandGen_MapSpawn { get; internal set; } = GameManager.randGens[1];
+        /// <summary> 随机数生成器：战斗内几率效果 </summary>
+        public static LKRandom RandGen_BattleEffect { get; internal set; } = GameManager.randGens[2];
+
+        protected override void Awake()
+        {
+            this.enemies = new List<Enemy>();
+            this.characters = new List<Character>();
+            this.entities = new List<Entity>();
+            this.currTrack = new LinkedList<Entity>();
+            this.nextTrack = new LinkedList<Entity>();
+            GameManager.instance = this;
+            GameManager.enemyObjects = new ObjectPool<EntityObject>((i) =>
+            {
+                EntityObject enemy = EntityObject.Instantiate(this._prefab_entityObject);
+                enemy.Parent = this._obj_enemies.gameObject;
+                enemy.name = "Enemy " + (i + 1);
+                enemy.Entity = new Enemy(0, enemy);
+                enemy.Active = false;
+                return enemy;
+            }, 16, "Entity: Enemies");
+            GameManager.characterObjects = new ObjectPool<EntityObject>((i) =>
+            {
+                EntityObject character = EntityObject.Instantiate(this._prefab_entityObject);
+                character.Parent = this._obj_characters.gameObject;
+                character.name = "Character " + (i + 1);
+                character.Entity = new Character(0, character);
+                character.Active = false;
+                return character;
+            }, 4, "Entity: Characters");
+            GameManager.combatTexts = new ObjectPool<CombatText>((i) =>
+            {
+                CombatText combatText = CombatText.Instantiate(this._prefab_combatText);
+                combatText.Parent = this._obj_combatTexts.gameObject;
+                combatText.name = "CombatText " + (i + 1);
+                combatText.Active = false;  
+                return combatText;
+            }, 32, "CombatText: Vanilla");
+        }
+
+        protected override void Start()
+        {
+            GameManager.SetCharacter(GameManager.NewCharacter(1));
+            for(int i = 0; i < 5;) GameManager.LocalCharacter.AddSymbol(new Symbol(++i));
+            for(int i = 1; i < 4; i++) GameManager.NewEnemy(1).Position = Vector2Int.one * i;
+            
+            GameManager.ResetBattle();
+            GameManager.NextInitiative();
+            AudioManager.PlayMusic(0);
+        }
+        
+        protected override void FixedUpdate()
+        {
+            if (GameManager.InitiativeEntity != null && GameManager.InitiativeEntity is Enemy enemy)
+                if (enemy.AI(GameManager.actionTimer++)) enemy.EndAction();
+        }
+
+        /// <summary> 选择角色 </summary>
+        /// <param name="character"> 角色数据 </param>
+        public static void SetCharacter(Character character)
+        {
+            UIManager.HUD_APList.UpdateValue();
+            UIManager.HUD_HPBar.Value = character.HP;
+            UIManager.HUD_HPBar.ValueMax = character.FinalMaxHP;
+        }
+
+        /// <summary> 设置对话集（内定） </summary>
+        /// <param name="type"> 对话集编号 </param>
+        public static void SetChat(int type) => UIManager.Game_ChatWindow.SetChat(new ChatSet(type));
+        /// <summary> 设置对话集（单文本） </summary>
+        /// <param name="text"> 对话文本 </param>
+        public static void SetChat(string text) => UIManager.Game_ChatWindow.SetChat(new ChatSet(text));
+        /// <summary> 设置对话集（自定义） </summary>
+        /// <param name="text"> 对话集 </param>
+        public static void SetChat(ChatSet chatSet) => UIManager.Game_ChatWindow.SetChat(chatSet);
+
+        /// <summary> 重置回合系统为初始态 </summary>
+        public static void ResetBattle()
+        {
+            GameManager.BattleRound = 0;
+            GameManager.instance.currTrack.Clear();
+            GameManager.instance.nextTrack.Clear();
+        }
+
+        /// <summary> 开始新回合 </summary>
+        public static void NextBattleRound()
+        {
+            if (GameManager.instance.currTrack.Count == 0)
+            {
+                Entity[] entities = GameManager.Entities;
+                int[] initiation = GameManager.EntityInitiation(entities);
+                List<(Entity, int)> res = new List<(Entity, int)>();
+                if (GameManager.BattleRound++ == 0)
+                {
+                    for (int i = 0; i < entities.Length; i++)
+                        res.Add((entities[i], initiation[i]));
+                    res.Sort((a, b) => a.Item2 - b.Item2);
+                    for (int i = 0; i < res.Count; i++)
+                    {
+                        GameManager.instance.currTrack.AddLast(res[i].Item1);
+                        res[i].Item1.OnBattleBegin();
+                    }
+                    res.Clear();
+                }
+                else foreach (Entity entity in GameManager.instance.nextTrack)
+                    GameManager.instance.currTrack.AddLast(entity);
+                GameManager.instance.nextTrack.Clear();
+                for (int i = 0; i < entities.Length; i++) res.Add((entities[i], initiation[i]));
+                res.Sort((a, b) => a.Item2 - b.Item2);
+                for (int i = 0; i < res.Count; i++)  GameManager.instance.nextTrack.AddLast(res[i].Item1);
+                UIManager.HUD_InitiativeTrack.UpdateSelf(GameManager.instance.currTrack, GameManager.instance.nextTrack);
+            }
+            foreach (Entity entity in GameManager.instance.entities)
+                entity.UpdateSelf();
+        }
+
+        /// <summary> 开始下一个实体的行动 </summary>
+        public static void NextInitiative()
+        {
+            if (GameManager.instance.currTrack.Count > 0)
+            {
+                if (GameManager.InitiativeEntity != null)
+                {
+                    GameManager.actionTimer = 0;
+                    GameManager.instance.currTrack.RemoveFirst();
+                    UIManager.HUD_InitiativeTrack.UpdateSelf(GameManager.instance.currTrack, GameManager.instance.nextTrack);
+                    if (GameManager.instance.currTrack.Count == 0) GameManager.NextBattleRound();
+                    GameManager.InitiativeEntity.BeginAction();
+                }
+            }
+            else
+            {
+                GameManager.NextBattleRound();
+                GameManager.InitiativeEntity.BeginAction();
+            }
+        }
+
+        /// <summary> 获取先攻点数 </summary>
+        /// <param name="entity"> 实体 </param>
+        /// <returns> 先攻点数 </returns>
+        public static int GetDice(Entity entity)
+        {
+            int val = GameManager.RandGen_InitiativeDice.NextInt(0, GameManager.Dice);
+            int agi = GameManager.RandGen_InitiativeDice.NextInt(entity.FinalAgility.Min(0), entity.FinalAgility.Max(0) + 1);
+            return val + agi;
+        }
+
+        /// <summary> 生成先攻顺序 </summary>
+        /// <param name="entities"> 实体列表 </param>
+        /// <returns> 对应的先攻点数数组 </returns>
+        public static int[] EntityInitiation(Entity[] entities)
+        {
+            Comparer<(Entity, int, int)> comparer = Comparer<(Entity, int, int)>.Create((a, b) => b.Item3 - a.Item3);
+            List<(Entity, int, int)> t = new List<(Entity, int, int)>();
+            for (int i = 0; i < entities.Length; i++)
+                t.Add((entities[i], i, GetDice(entities[i])));
+            t.Sort(comparer);
+            for (int i = 0, j = 1; j < t.Count;)
+                if (t[i].Item3 == t[j].Item3 && j != t.Count - 1) j++;
+                else
+                {
+                    if (j - i > 1) // 同点数的局部排序
+                    {
+                        for (int k = i; k < j; k++)
+                            t[k] = (t[k].Item1, t[k].Item2, GetDice(t[k].Item1));
+                        t.Sort(i, j - i, comparer);
+                    }
+                    else i = j;
+                    j = j + 1;
+                }
+            int[] res = new int[t.Count];
+            for (int i = 0; i < t.Count; i++)
+                res[t[i].Item2] = i;
+            return res;
+        }
+
+        public static void ApplySymbol(Symbol symbol, Entity[] targets, SoleEffect[] effects)
+        {
+        }
+
+        /// <summary> 从对象池获取一个Enemy实体 </summary>
+        /// <param name="type"> 初始化编号 </param>
+        /// <returns> 初始化完毕的Enemy实体 </returns>
+        public static Enemy NewEnemy(int type)
+        {
+            if (type == 0) return null;
+            EntityObject entityObject = GameManager.enemyObjects.Request();
+            Enemy enemy = entityObject.Entity as Enemy;
+            enemy.SetDefaults(type);
+            entityObject.Sprite = AssetManager.EnemyStand[type];
+            entityObject.Active = true;
+            GameManager.instance.enemies.Add(enemy);
+            GameManager.instance.entities.Add(enemy);
+            return enemy;
+        }
+
+        /// <summary> 从对象池获取一个Character实体 </summary>
+        /// <param name="type"> 初始化编号 </param>
+        /// <returns> 初始化完毕的Character实体 </returns>
+        public static Character NewCharacter(int type)
+        {
+            if (type == 0) return null;
+            EntityObject entityObject = GameManager.characterObjects.Request();
+            Character character = entityObject.Entity as Character;
+            character.SetDefaults(type);
+            entityObject.Sprite = AssetManager.CharacterStand[type];
+            entityObject.Active = true;
+            GameManager.instance.characters.Add(character);
+            GameManager.instance.entities.Add(character);
+            return character;
+        }
+
+        /// <summary> 从对象池获取一个CombatText对象 </summary>
+        /// <param name="text"> 文本 </param>
+        /// <returns> 初始化完毕的CombatText对象 </returns>
+        public static CombatText NewCombatText(int style, string text)
+        {
+            if (text == null) return null;
+            CombatText combatText = GameManager.combatTexts.Request();
+            combatText.Style = style;
+            combatText.Text = text;
+            combatText.Active = true;
+            return combatText;
+        }
+
+        /// <summary> 从对象池释放Enemy实体 </summary>
+        /// <param name="enemy"> 目标Enemy实体 </param>
+        public static void KillEnemy(Enemy enemy)
+        {
+            enemy.SetDefaults(0);
+            enemy.EntityObject.Active = false;
+            GameManager.instance.enemies.Remove(enemy);
+            GameManager.instance.entities.Remove(enemy);
+            GameManager.enemyObjects.Release(enemy.EntityObject);
+        }
+
+        /// <summary> 从对象池释放Character实体 </summary>
+        /// <param name="character"> 目标Character实体 </param>
+        public static void KillCharacter(Character character)
+        {
+            character.SetDefaults(0);
+            character.EntityObject.Active = false;
+            GameManager.instance.characters.Remove(character);
+            GameManager.instance.entities.Remove(character);
+            GameManager.characterObjects.Release(character.EntityObject);
+        }
+
+        /// <summary> 从对象池释放Character实体 </summary>
+        /// <param name="character"> 目标Character实体 </param>
+        public static void KillCombatText(CombatText combatText)
+        {
+            combatText.Active = false;
+            GameManager.combatTexts.Release(combatText);
+        }
+    }
+}

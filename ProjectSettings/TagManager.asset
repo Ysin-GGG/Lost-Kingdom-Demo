@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Character
+  - Ally
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Grid
+  - Field
+  - Entity
+  - Enemy
+  - Character
+  - Effect
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Field
+    uniqueID: 2451631433
+    locked: 0
+  - name: Entity
+    uniqueID: 3715318531
+    locked: 0
+  - name: Effect
+    uniqueID: 4267116873
+    locked: 0
+  - name: Grid
+    uniqueID: 3670973473
+    locked: 0
+  - name: UI
+    uniqueID: 3062134605
+    locked: 0

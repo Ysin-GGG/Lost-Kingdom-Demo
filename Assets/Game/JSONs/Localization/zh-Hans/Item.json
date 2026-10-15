@@ -1,0 +1,14 @@
+﻿{
+  "Name": {
+    "None": "",
+    "ArtonsSapphire": "蓝宝石吊坠",
+    "ArchaicCloak": "古法斗篷",
+    "WoodenStaff": "木制法杖"
+  },
+  "Description": {
+    "None": "",
+    "ArtonsSapphire": "散发着微弱的光芒。",
+    "ArchaicCloak": "上面还残留了些许的魔力。",
+    "WoodenStaff": "由木材做成的普通法杖。"
+  }
+}

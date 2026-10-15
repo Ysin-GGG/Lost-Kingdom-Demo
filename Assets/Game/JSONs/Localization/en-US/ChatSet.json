@@ -1,0 +1,22 @@
+﻿{
+  "Context_1": {
+    "0": "A house? But it seems that no one lives there anymore...\nMaybe I should go in and take a look."
+  },
+  "Context_2": {
+    "0": "Leave the house?"
+  },
+  "Context_3": {
+    "0": "The chest is covered in dust."
+  },
+  "Context_4": {
+    "0": "I'm pretty sure someone has lived here for a long time. What exactly happened here?"
+  },
+  "Option_1": {
+    "0": "Go inside and check",
+    "1": "I have other things to do"
+  },
+  "Option_2": {
+    "0": "Leave now",
+    "1": "Just later"
+  }
+}

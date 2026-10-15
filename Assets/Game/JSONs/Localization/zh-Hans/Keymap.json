@@ -1,0 +1,16 @@
+﻿{
+  "Name": {
+    "CharacterUp": "向上移动一格",
+    "CharacterDown": "向下移动一格",
+    "CharacterLeft": "向左移动一格",
+    "CharacterRight": "向右移动一格",
+    "CharacterMoveMode": "移动模式",
+    "OpenInventoryUI": "背包",
+    "OpenSymbolUI": "技能库",
+    "OpenMapUI": "地图",
+    "EndAction": "结束当前回合",
+    "Interaction": "交互",
+    "ShowOrHideHUD": "显示/隐藏HUD",
+    "PauseOrBack": "暂停/返回"
+  }
+}

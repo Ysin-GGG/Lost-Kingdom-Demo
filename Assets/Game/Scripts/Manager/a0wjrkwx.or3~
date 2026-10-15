@@ -1,0 +1,47 @@
+﻿using LostKingdom.UI;
+using LostKingdom.Utility;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UI;
+using AudioSettings = LostKingdom.UI.AudioSettings;
+using CharacterInfo = LostKingdom.UI.CharacterInfo;
+
+namespace LostKingdom.Manager
+{
+    [DisallowMultipleComponent]
+    public sealed class MapManager : LKBehaviour
+    {
+        [SerializeField]
+        private GameObject outline;
+        [SerializeField]
+        private List<SpriteRenderer> shadows;
+
+        private static MapManager instance;
+
+        protected override void Awake()
+        {
+            MapManager.instance = this;
+        }
+
+        public static void SetOutline(SpriteRenderer target)
+        {
+            if (target == null)
+            {
+                MapManager.instance.outline.SetActive(false);
+                MapManager.instance.outline.SetParent(MapManager.instance.transform);
+            }
+            else
+            {
+                MapManager.instance.outline.SetActive(true);
+                MapManager.instance.outline.SetParent(target.transform);
+                foreach (SpriteRenderer shadow in MapManager.instance.shadows)
+                {
+                    shadow.sprite = target.sprite;
+                    shadow.sortingOrder = target.sortingOrder;
+                    shadow.sortingLayerID = target.sortingLayerID;
+                }
+            }
+        }
+    }
+}

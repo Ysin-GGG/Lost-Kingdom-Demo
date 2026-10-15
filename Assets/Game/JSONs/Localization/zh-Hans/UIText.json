@@ -1,0 +1,39 @@
+﻿{
+  "Name": {
+    "GeneralSettings": "通用",
+    "GraphicSettings": "图像",
+    "AudioSettings": "音频",
+    "GameplaySettings": "游戏偏好",
+    "UISettings": "用户界面",
+    "ControlSettings": "控制",
+    "KeyControlName": "操作名",
+    "Keyboard1": "主选按键（键盘）",
+    "Keyboard2": "次选按键（键盘）",
+    "Gamepad1": "主选按键（手柄）",
+    "Gamepad2": "次选按键（手柄）",
+    "ContinueGame": "继续游戏",
+    "NewGame": "新游戏",
+    "Options": "设置",
+    "ExitGame": "退出游戏",
+    "MasterVolume": "主音量",
+    "MusicVolume": "音乐音量",
+    "AmbientVolume": "环境音量",
+    "SFXVolume": "效果音量",
+    "Resolution": "屏幕分辨率",
+    "FPS": "帧率",
+    "Language": "语言本地化",
+    "SymbolCDPool": "技能冷却表",
+    "EndAction": "结束当前行动"
+  },
+  "Description": {
+    "KeySettingTip": "你正在尝试为“{0}”操作的“{1}”设置一个新按键。",
+    "ContinueGame": "从上次游玩的进度继续冒险",
+    "NewGame": "开始新的冒险",
+    "Options": "自定义你的偏好设置",
+    "ExitGame": "退出游戏并返回到桌面"
+  },
+  "Language": {
+    "English": "English（英语）",
+    "Chinese": "简体中文"
+  }
+}

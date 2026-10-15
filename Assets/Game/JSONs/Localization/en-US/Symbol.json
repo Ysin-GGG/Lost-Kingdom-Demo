@@ -1,0 +1,29 @@
+﻿{
+  "Name": {
+    "Fireball": "Fireball",
+    "Rain": "Rain",
+    "MagicShield": "Magic Shield",
+    "IceArrow": "Ice Arrow",
+    "FireWheel": "Fire Wheel",
+    "ArcaneSurge": "Arcane Surge"
+  },
+  "Description": {
+    "Fireball": "Shoots an explosive fireball.",
+    "Rain": "Summons rain and make entity within its area damp.",
+    "MagicShield": "Slightly decreases damage taken.",
+    "IceArrow": "Shoots a ice arrow with slightly chance of freezing target.",
+    "FireWheel": "Burn the entities around you.",
+    "ArcaneSurge": "Slightly increases spell damage dealt."
+  },
+  "SoleEffect": {
+    "Fireball_1": "[Fireball]: deals {0} fire damage",
+    "Fireball_2": "While [Fireball] dealt damage, {0}% applys {1} <{2}> to targets",
+    "Rain_1": "Applys {0} <{1}> to targets in area",
+    "MagicShield_1": "Applys {0} <{1}> to targets in area",
+    "IceArrow_1": "[Ice Arrow]: deals {0} ice damage",
+    "IceArrow_2": "While [Ice Arrow] dealt damage, {0}% applys {1} <{2}> to targets",
+    "FireWheel_1": "[Fire Wheel]: deals {0} fire damage {1} times",
+    "FireWheel_2": "While [Fire Wheel] dealt damage, {0}% applys {1} <{2}> to targets",
+    "ArcaneSurge_1": "Increases spell damage by {0}%"
+  }
+}

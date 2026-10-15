@@ -1,0 +1,74 @@
+﻿{
+  "CharacterUp": [
+    119,
+    273,
+    0,
+    0
+  ],
+  "CharacterDown": [
+    115,
+    274,
+    0,
+    0
+  ],
+  "CharacterLeft": [
+    97,
+    276,
+    0,
+    0
+  ],
+  "CharacterRight": [
+    100,
+    275,
+    0,
+    0
+  ],
+  "CharacterMoveMode": [
+    114,
+    0,
+    0,
+    0
+  ],
+  "OpenInventoryUI": [
+    98,
+    0,
+    0,
+    0
+  ],
+  "OpenSymbolUI": [
+    118,
+    0,
+    0,
+    0
+  ],
+  "OpenMapUI": [
+    109,
+    0,
+    0,
+    0
+  ],
+  "EndAction": [
+    101,
+    0,
+    0,
+    0
+  ],
+  "Interaction": [
+    102,
+    0,
+    0,
+    0
+  ],
+  "ShowOrHideHUD": [
+    122,
+    0,
+    0,
+    0
+  ],
+  "PauseOrBack": [
+    27,
+    0,
+    0,
+    0
+  ]
+}

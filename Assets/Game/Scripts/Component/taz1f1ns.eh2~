@@ -1,0 +1,36 @@
+using LostKingdom.Manager;
+using LostKingdom.Utility;
+using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
+
+namespace LostKingdom.Components
+{
+    [RequireComponent(typeof(SpriteRenderer))]
+    [RequireComponent(typeof(PolygonCollider2D))]
+    [RequireComponent(typeof(LKSpriteRenderSetting))]
+    public class InteractableSprite : LKBehaviour, IPointerClickHandler
+    {
+        [SerializeField]
+        private SpriteRenderer spriteRenderer;
+
+        protected override object HoverItem => this.spriteRenderer;
+
+        protected override void Awake()
+        {
+            this.spriteRenderer = this.GetComponent<SpriteRenderer>();
+        }
+
+        protected override bool OnShowHoverText()
+        {
+            UIManager.Game_HoverText.SetText("F");
+            return base.OnShowHoverText();
+        }
+        public virtual void OnPointerClick(PointerEventData eventData)
+        {
+            Debug.Log("F");
+        }
+    }
+}

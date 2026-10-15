@@ -1,0 +1,16 @@
+﻿{
+  "Name": {
+    "CharacterUp": "Move upwards",
+    "CharacterDown": "Move downwards",
+    "CharacterLeft": "Move left",
+    "CharacterRight": "Move right",
+    "CharacterMoveMode": "Move mode",
+    "OpenInventoryUI": "Inventory",
+    "OpenSymbolUI": "Symbol list",
+    "OpenMapUI": "Fields map",
+    "EndAction": "End Action",
+    "Interaction": "Interaction",
+    "ShowOrHideHUD": "HUD",
+    "PauseOrBack": "Pause or back"
+  }
+}

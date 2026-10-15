@@ -1,0 +1,141 @@
+using LostKingdom.Manager;
+using LostKingdom.UI;
+using LostKingdom.Utility;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.Design;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
+
+namespace LostKingdom
+{
+    /// <summary> LK特化组件类 </summary>
+    public class LKBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
+    {
+        /// <summary> 组件是否启用 </summary>
+        public bool? Active
+        {
+            get => this.GetActive();
+            set
+            {
+                bool oldValue = this.GetActive();
+                bool newValue = value ?? !oldValue;
+                if (oldValue != newValue)
+                {
+                    if (newValue && this.OnActivate()) this.SetActive(true);
+                    if (!newValue && this.OnDeactivate()) this.SetActive(false);
+                }
+            }
+        }
+
+        /// <summary> 父组件 </summary>
+        public GameObject Parent
+        {
+            get => this.transform.parent.gameObject;
+            set { this.gameObject.layer = value.layer; this.transform.SetParent(value.transform, false); }
+        }
+
+        /// <summary> 矩形变形器 </summary>
+        public RectTransform RectTransform
+        {
+            get
+            {
+                if (this.rectTransform == null)
+                {
+                    if (this.GetComponent<RectTransform>() == null) this.AddComponent<RectTransform>();
+                    this.rectTransform = this.GetComponent<RectTransform>();
+                }
+                return this.rectTransform;
+            }
+        }
+
+        /// <summary> 尺寸 </summary>
+        public Vector2 Size { get => this.RectTransform.sizeDelta; set => this.RectTransform.sizeDelta = value; }
+        /// <summary> 对象支点 </summary>
+        public Vector2 Pivot { get => this.RectTransform.pivot; set => this.RectTransform.pivot = value; }
+        /// <summary> 对象支点 </summary>
+        public Vector4 Anchor { get => new Vector4(this.RectTransform.anchorMin.x, this.RectTransform.anchorMin.y, this.RectTransform.anchorMax.x, this.RectTransform.anchorMax.y); set { this.RectTransform.anchorMin = new Vector2(value.x, value.y); this.RectTransform.anchorMax = new Vector2(value.z, value.w); } }
+        /// <summary> 相对缩放 </summary>
+        public Vector2 Scale { get => this.RectTransform.localScale; set => this.RectTransform.localScale = value; }
+        /// <summary> 锚点坐标 </summary>
+        public Vector2 Position { get => this.RectTransform.anchoredPosition; set => this.RectTransform.anchoredPosition = value; }
+        /// <summary> 相对坐标 </summary>
+        public Vector2 LocalPosition { get => this.RectTransform.localPosition; set => this.RectTransform.localPosition = value; }
+        /// <summary> 全局坐标 </summary>
+        public Vector2 WorldPosition { get => this.RectTransform.position; set => this.RectTransform.position = value; }
+        /// <summary> 相对旋转角度 </summary>
+        public float LocalRotation { get => this.RectTransform.localEulerAngles.z; set => this.RectTransform.localEulerAngles = new Vector3(0, 0, value); }
+        /// <summary> 全局旋转角度 </summary>
+        public float WorldRotation { get => this.RectTransform.rotation.z; set => this.RectTransform.rotation.Set(0, 0, value, 0); }
+
+        protected virtual object HoverItem { get; } = null;
+
+        public virtual LKBehaviour Clone() => LKBehaviour.Instantiate(this);
+
+        protected internal RectTransform rectTransform = null;
+
+        /// <summary> 初始化生成时执行 </summary>
+        protected virtual void Awake() { }
+
+        /// <summary> 尝试启用该组件时执行 </summary>
+        /// <returns> 是否允许本次组件启用 </returns>
+        protected virtual bool OnActivate() => true;
+
+        /// <summary> 启用该组件时执行 </summary>
+        protected virtual void OnEnable() {  }
+
+        /// <summary> 首次刷新时执行 </summary>
+        protected virtual void Start() { }
+
+        /// <summary> 逻辑帧执行 </summary>
+        protected virtual void FixedUpdate() { }
+
+        /// <summary> 渲染帧执行 </summary>
+        protected virtual void Update() { }
+
+        /// <summary> 渲染帧执行后执行 </summary>
+        protected virtual void LateUpdate() { }
+
+        /// <summary> 尝试禁用该组件时执行 </summary>
+        /// <returns> 是否允许本次组件禁用 </returns>
+        protected virtual bool OnDeactivate() => true;
+
+        /// <summary> 禁用该组件时执行 </summary>
+        protected virtual void OnDisable() { }
+
+        /// <summary> 销毁该组件时执行 </summary>
+        protected virtual void OnDestroy() { }
+        protected virtual bool OnShowHoverText() => true;
+
+        public virtual void OnPointerEnter(PointerEventData eventData)
+        {
+            if (this.HoverItem != null)
+            {
+                UIManager.IsHoverTextMoving = false;
+                UIManager.IsHoverTextShowing = this.OnShowHoverText();
+                UIManager.Game_HoverText.Position = eventData.position + UIManager.Game_HoverText.Offset;
+            }
+        }
+
+        public virtual void OnPointerMove(PointerEventData eventData)
+        {
+            if (this.HoverItem != null && UIManager.IsHoverTextShowing)
+                UIManager.Game_HoverText.Position = eventData.position + UIManager.Game_HoverText.Offset;
+        }
+
+        public virtual void OnPointerExit(PointerEventData eventData)
+        {
+            if (this.HoverItem != null)
+            {
+                UIManager.IsHoverTextShowing = false;
+                UIManager.Game_HoverText.Active = false;
+                UIManager.Game_HoverText.Position = eventData.position + UIManager.Game_HoverText.Offset;
+                FieldManager.SetOutline(null);
+            }
+        }
+    }
+}
+
